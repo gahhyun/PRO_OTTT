@@ -159,14 +159,14 @@
 				/********************************************************************************/
 				/*	DOM ajaxStart 영역 ajax 호출시 로딩효과											*/
 				/********************************************************************************/
-	      		$(document).ajaxStart(function() {
-	          		$('#loading').show();
-	        	}).ajaxStop(function() {
-	          		setTimeout(function() {
-		            	$('#loading').hide();
-		          	}, 1000); // 1초의 지연 효과를 줍니다.
-	        	});
-	
+				$(document).ajaxStart(function() {
+					$('#loading').show();
+				}).ajaxStop(function() {
+					setTimeout(function() {
+					$('#loading').hide();
+					}, 1000); // 1초의 지연 효과를 줍니다.
+				});
+
 				
 				/********************************************************************************/
 				/*	스크롤 Event정의 영역															*/
@@ -229,7 +229,7 @@
 				});
 				
 				
-				//검색어버튼 Click Event
+				//검색어버튼 Click Event : enter로 검색가능
 				$("#schText").keydown(function(event) {
 				  // Enter 키의 keyCode는 13입니다.
 				  if (event.keyCode === 13) {
@@ -242,6 +242,19 @@
 				      "schText": $("#schText").val()
 				    });
 				  }
+				});
+				
+				//검색어버튼 Click Event : 돋보기 이미지 클릭 시 
+				$("#schBtn").click(function(){
+					//목록 영역 클리어
+					$("#post_list").html("");
+					//아티클 목록을 불러오는 ajax 함수 호출
+					fnCallAjaxSelectArticleList({
+						"offset": OFFSET
+						, "category": "all"
+						, "schText" : $("#schText").val()
+					});
+
 				});
 				
 				
